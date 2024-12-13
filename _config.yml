@@ -1,0 +1,12 @@
+---
+title: Regexed (^.*$)
+description: Daily Regular Expressions Puzzles
+author: Daniel James
+timezone: America/Los_Angeles
+email: daniel@thzinc.com
+url: https://regexed.com
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-redirect-from

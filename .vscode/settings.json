@@ -1,0 +1,10 @@
+{
+  "cSpell.words": [],
+  "[liquid]": {
+    "editor.defaultFormatter": "sissel.shopify-liquid",
+    "editor.formatOnSave": true
+  },
+  "files.associations": {
+    "*.html": "liquid"
+  }
+}
