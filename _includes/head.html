@@ -1,0 +1,71 @@
+{%- capture head_title -%}
+  {%- if title -%}
+    {{title}} – {{site.title}}
+    {%- elsif page.title -%}
+    {{page.title}} – {{site.title}}
+  {%- else -%}
+    {{site.title}}
+  {%- endif -%}
+{%- endcapture -%}
+{%- capture permalink -%}
+  {%- if page.permalink -%}
+    {{page.permalink}}
+  {%- else -%}
+    {{page.url | replace:'index.html',''}}
+  {%- endif -%}
+{%- endcapture -%}
+{% assign canonical_url = permalink | prepend: site.baseurl | prepend: site.url %}
+{%- capture description -%}
+  {%- if page.description -%}
+    {{ page.description | strip_html }}
+    {%- elsif page.excerpt -%}
+    {{ page.excerpt | markdownify | strip_html | truncatewords: 20 }}
+  {%- else -%}
+    {{ site.description | strip_html }}
+  {%- endif -%}
+{%- endcapture -%}
+{%- capture keywords -%}
+  {%- if page.keywords -%}
+    {{ page.keywords | strip_html }}
+  {%- else -%}
+    {{ site.keywords | strip_html }}
+  {%- endif -%}
+  {{ page.tags | join: " " | strip_html }}
+{%- endcapture -%}
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="{{ description | strip | escape }}" />
+  <meta name="keywords" content="{{ keywords | strip | escape }}" />
+  <meta name="language" content="en-US" />
+  <meta name="og:description" content="{{ description | strip | escape }}" />
+  <meta name="og:title" content="{{ head_title | strip | escape }}" />
+  <meta name="og:type" content="website" />
+  <meta name="og:url" content="{{ canonical_url }}" />
+  <meta name="og:image" content="/assets/logo-card.png" />
+  <meta name="og:image:alt" content="Regexed logo consisting of speech bubble containing the expression &quot;^.*$&quot;" />
+  <meta name="theme-color" content="#8940e3" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ head_title | strip | escape }}</title>
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/assets/apple-touch-icon.png" />
+  <link rel="canonical" href="{{ canonical_url }}" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/assets/favicon-16x16.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/assets/favicon-32x32.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <script
+    defer
+    data-domain="regexed.com"
+    src="https://plausible.io/js/script.outbound-links.js"></script>
+</head>
