@@ -3,23 +3,90 @@ body {
   max-width: 800px;
   margin: auto;
   background-color: #8940e3;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: #ffffff;
 }
 
 header {
-  text-align: center;
-}
-
-header h1 {
-  font-size: 5rem;
-  font-weight: bolder;
+  min-height: 5rem;
 }
 
 header img {
   object-fit: contain;
   max-width: 50vw;
-  max-height: 50vh;
+  max-height: 5rem;
 }
 
 main {
+  flex: auto;
+  align-content: center;
+}
+
+article {
+  padding: 1rem;
+}
+
+footer {
+  min-height: 2rem;
   text-align: center;
+  align-content: flex-end;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/*---*/
+
+.hero {
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.hero img {
+  object-fit: contain;
+  max-width: 25vw;
+  max-height: 25vh;
+}
+
+/*---*/
+
+.puzzle-card {
+  text-align: center;
+}
+
+.puzzle-card .h-event {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: inline-block;
+  color: #ffffff;
+}
+
+.puzzle-card a {
+  color: #9497ff;
+}
+
+.puzzle-card a:visited {
+  color: #e696f7;
+}
+
+.puzzle-card h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.puzzle-card p {
+  margin: 0.25em;
 }

@@ -6,7 +6,28 @@ timezone: America/Los_Angeles
 email: daniel@thzinc.com
 url: https://regexed.com
 markdown: kramdown
+collections:
+  puzzles:
+    output: true
+defaults:
+  - scope:
+      path: ""
+      type: "puzzles"
+    values:
+      layout: "puzzle"
+      permalink: /puzzles/:name
+feed:
+  collections:
+    - puzzles
 plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-redirect-from
+exclude:
+  - .jekyll-cache/
+  - "**/node_modules"
+  - bin/
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - puzzle/

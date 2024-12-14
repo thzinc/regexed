@@ -1,0 +1,16 @@
+{%- assign trimmed_content = content | strip -%}
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include header.html %}
+    <main>
+      <article>
+        {%- if trimmed_content != "" -%}
+          <p>{{ trimmed_content }}</p>
+        {%- endif -%}
+      </article>
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

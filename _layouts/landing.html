@@ -1,14 +1,37 @@
+{%- assign curr_puzzle = site.puzzles | last -%}
+{%- assign puzzle_number = curr_puzzle.id | split: "/" | last -%}
+{%- assign trimmed_content = content | strip -%}
 <!DOCTYPE html>
 <html>
   {% include head.html %}
   <body>
-    <header>
-      <img alt="Logo consisting of speech bubble containing the expression &quot;^.*$&quot;" src="/assets/logo-large.png">
-
-      <h1>regexed</h1>
-    </header>
     <main>
-      {{ content }}
+      <figure class="hero">
+        <img alt="Logo consisting of speech bubble containing the expression &quot;^.*$&quot;" src="/assets/logo-landing.png">
+
+        <h1>regexed</h1>
+      </figure>
+      {%- if trimmed_content != "" -%}
+        <p>{{ trimmed_content }}</p>
+      {%- endif -%}
+      <div
+        id="landing"
+        data-puzzle-number="{{puzzle_number | escape}}"
+        data-play-url="{{ curr_puzzle.id |  escape }}"></div>
+      <div class="puzzle-card">
+        <div class="h-event">
+          <h2 class="dt-start">{{ curr_puzzle.date | date: "%B %e, %Y" }}</h2>
+          <p>
+            <a href="{{curr_puzzle.id | escape}}" class="u-url">
+              <span class="p-name">Puzzle {{ puzzle_number }}</span>
+              –
+              <span class="p-summary">{{ curr_puzzle.title }}</span>
+            </a>
+          </p>
+          <p>By {{ curr_puzzle.author }}</p>
+        </div>
+      </div>
     </main>
+    {% include footer.html %}
   </body>
 </html>
