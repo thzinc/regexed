@@ -1,7 +1,27 @@
+{%- assign puzzle_number = page.id | split: "/" | last -%}
+{%- assign trimmed_content = content | strip -%}
 <!DOCTYPE html>
 <html>
   {% include head.html %}
   <body>
-    {{ content }}
+    {% include header.html %}
+    <main>
+      <article>
+        {%- if trimmed_content != "" -%}
+          <p>{{ trimmed_content }}</p>
+        {%- endif -%}
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <script type="application/json" id="challenges">
+          {{- page.challenges | jsonify -}}
+        </script>
+        <div
+          id="puzzle"
+          data-puzzle-number="{{puzzle_number | escape}}"
+          data-type="{{page.type | escape}}"
+          data-theme="{{page.theme | escape}}"
+          data-challenges-id="challenges"></div>
+      </article>
+    </main>
+    {% include footer.html %}
   </body>
 </html>

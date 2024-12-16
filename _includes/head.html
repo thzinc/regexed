@@ -69,6 +69,17 @@
     href="/assets/favicon-32x32.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/assets/site.css" />
+  {%- for entrypoint in site.data["asset-manifest"].entrypoints -%}
+    {%- assign ext = entrypoint | split: "." | last -%}
+    {%- case ext -%}
+      {%- when "js" -%}
+        <script defer src="/{{entrypoint | escape}}"></script>
+
+      {%- when "css" -%}
+        <link rel="stylesheet" href="/{{entrypoint | escape}}">
+
+    {%- endcase -%}
+  {%- endfor -%}
   <script
     defer
     data-domain="regexed.com"
