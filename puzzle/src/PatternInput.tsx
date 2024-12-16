@@ -33,7 +33,7 @@ export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
 
   useEffect(() => {
     onChange(valid, pattern);
-  }, [valid, pattern, error]);
+  }, [valid, pattern, error, onChange]);
 
   const submit = useCallback(
     (ev: FormEvent<HTMLFormElement>) => {
@@ -43,7 +43,7 @@ export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
 
       onSubmit(pattern);
     },
-    [valid, pattern]
+    [valid, pattern, onSubmit]
   );
   return (
     <form onSubmit={submit} className="pattern-input">
@@ -51,14 +51,15 @@ export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
       <fieldset>
         <div className="input">
           <input
-            type="text"
-            id="pattern"
+            autoCapitalize="off"
             autoComplete="off"
             autoCorrect="off"
-            autoCapitalize="off"
-            value={patternStr}
+            className={patternStr.length === 0 || valid ? "valid" : "invalid"}
+            id="pattern"
             onChange={(ev) => setPatternStr(ev.target.value)}
-            className={valid ? "valid" : "invalid"}
+            placeholder="^.*$"
+            type="text"
+            value={patternStr}
           />
         </div>
         <div className="action">

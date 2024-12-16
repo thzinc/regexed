@@ -1,28 +1,24 @@
 import { Attempts } from "./Attempts";
 import { PatternInput } from "./PatternInput";
 import { Challenges } from "./Challenges";
+import { Puzzle } from "./types";
+import { useState } from "react";
 
 interface PuzzleAppProps {
-  puzzleNumber: string | undefined;
-  type: string | undefined;
-  theme: string | undefined;
-  challenges: Array<any> | undefined;
+  puzzle: Puzzle;
 }
 
-export function PuzzleApp({
-  puzzleNumber,
-  type,
-  theme,
-  challenges,
-}: PuzzleAppProps) {
+export function PuzzleApp({ puzzle }: PuzzleAppProps) {
+  const [pattern, setPattern] = useState<RegExp>();
+
   return (
     <>
       <Attempts />
       <PatternInput
-        onChange={(...rest) => console.debug("change", rest)}
+        onChange={(valid, pattern) => setPattern(pattern)}
         onSubmit={(...rest) => console.debug("submit", rest)}
       />
-      <Challenges />
+      <Challenges puzzle={puzzle} pattern={pattern} />
     </>
   );
 }
