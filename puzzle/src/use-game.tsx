@@ -26,6 +26,7 @@ export enum GameChallengeResult {
 
 export interface GameAttempt {
   pattern: RegExp;
+  source: string;
   results: Array<GameChallengeResult>;
 }
 
@@ -43,6 +44,8 @@ export function useGame({ challenges }: Puzzle) {
   const [gameChallenges, setGameChallenges] = useState<Array<GameChallenge>>(
     []
   );
+  const [remainingAttempts, setRemainingAttempts] =
+    useState<number>(MAX_ATTEMPTS);
 
   useEffect(() => {
     setChallengeMatches(
@@ -93,9 +96,11 @@ export function useGame({ challenges }: Puzzle) {
   return {
     pattern,
     setPattern,
+    attempts,
+    remainingAttempts,
     gameState,
     gameChallenges,
-    attempt(pattern: RegExp) {
+    attempt(pattern: RegExp, source: string) {
       if (gameState !== GameState.Incomplete) return;
 
       const { i: lastConsecutiveMatchIndex } = gameChallenges.reduce(
@@ -124,6 +129,7 @@ export function useGame({ challenges }: Puzzle) {
         ...attempts,
         {
           pattern,
+          source,
           results: gameChallenges.map((gc, i) => {
             if (nextRevealedChallengeIndex < i)
               return GameChallengeResult.NotAttempted;
@@ -135,6 +141,7 @@ export function useGame({ challenges }: Puzzle) {
 
       setRevealedChallengeIndex(nextRevealedChallengeIndex);
       setAttempts(nextAttempts);
+      setRemainingAttempts(MAX_ATTEMPTS - nextAttempts.length);
 
       if (gameChallenges.every((gc) => gc.matched)) {
         setGameState(GameState.Won);

@@ -2,25 +2,30 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import "./PatternInput.css";
 
 interface PatternInputProps {
-  onChange: (valid: boolean, pattern: RegExp | undefined) => void;
-  onSubmit: (pattern: RegExp) => void;
+  disabled?: boolean;
+  onChange: (pattern?: RegExp) => void;
+  onSubmit: (pattern: RegExp, source: string) => void;
 }
 
-export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
-  const [patternStr, setPatternStr] = useState<string>("");
+export function PatternInput({
+  disabled = false,
+  onChange,
+  onSubmit,
+}: PatternInputProps) {
+  const [patternString, setPatternString] = useState<string>("");
   const [pattern, setPattern] = useState<RegExp>();
   const [valid, setValid] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    if (patternStr.length === 0) {
+    if (patternString.length === 0) {
       setPattern(undefined);
       setValid(false);
       return;
     }
 
     try {
-      const newPattern = new RegExp(patternStr);
+      const newPattern = new RegExp(patternString);
       setPattern(newPattern);
       setValid(true);
       setError(undefined);
@@ -29,11 +34,11 @@ export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
       setValid(false);
       setError(`${err}`);
     }
-  }, [patternStr, setPattern, setValid, setError]);
+  }, [patternString, setPattern, setValid, setError]);
 
   useEffect(() => {
-    onChange(valid, pattern);
-  }, [valid, pattern, error, onChange]);
+    onChange(pattern);
+  }, [valid, pattern, error, onChange, patternString]);
 
   const submit = useCallback(
     (ev: FormEvent<HTMLFormElement>) => {
@@ -41,9 +46,9 @@ export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
       if (!valid) return;
       if (!pattern) return;
 
-      onSubmit(pattern);
+      onSubmit(pattern, patternString);
     },
-    [valid, pattern, onSubmit]
+    [valid, pattern, onSubmit, patternString]
   );
   return (
     <form onSubmit={submit} className="pattern-input">
@@ -54,16 +59,18 @@ export function PatternInput({ onChange, onSubmit }: PatternInputProps) {
             autoCapitalize="off"
             autoComplete="off"
             autoCorrect="off"
-            className={patternStr.length === 0 || valid ? "valid" : "invalid"}
+            className={
+              patternString.length === 0 || valid ? "valid" : "invalid"
+            }
             id="pattern"
-            onChange={(ev) => setPatternStr(ev.target.value)}
+            onChange={(ev) => setPatternString(ev.target.value)}
             placeholder="^.*$"
             type="text"
-            value={patternStr}
+            value={patternString}
           />
         </div>
         <div className="action">
-          <button type="submit" disabled={!valid}>
+          <button type="submit" disabled={disabled || !valid}>
             Submit
           </button>
         </div>

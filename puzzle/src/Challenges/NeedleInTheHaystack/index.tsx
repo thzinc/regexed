@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import { PuzzleChallenge } from "../../types";
 import { ChallengesProps } from "../ChallengesProps";
-import "./index.css";
 import { GameChallenge } from "../../use-game";
+import "./index.css";
 
 export function NeedleInTheHaystack({ puzzle, challenges }: ChallengesProps) {
   return (
