@@ -1,6 +1,40 @@
-.pass {
-  background-color: rgba(0, 255, 0, 0.55);
+.challenges {
+  padding: 0;
 }
+
+.challenge {
+  padding: 0.5rem;
+}
+
+.pass {
+  background-color: rgba(0, 255, 0, 0.25);
+}
+
 .highlight {
   background-color: moccasin;
+}
+
+.group-chat {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.group-chat .challenge {
+  width: 60%;
+  margin: 1rem 0;
+}
+
+.group-chat .challenge:nth-child(2n) {
+  align-self: flex-end;
+}
+
+.group-chat .highlight {
+  background-color: darkorchid;
+}
+
+.group-chat .concealed {
+  visibility: hidden;
 }

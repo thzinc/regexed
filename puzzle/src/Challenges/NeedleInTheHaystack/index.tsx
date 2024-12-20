@@ -4,7 +4,7 @@ import "./index.css";
 
 export function NeedleInTheHaystack({ puzzle, challenges }: ChallengesProps) {
   return (
-    <div>
+    <div className={["challenges", puzzle.theme].join(" ")}>
       {challenges.map((c) => (
         <Challenge challenge={c} />
       ))}
@@ -16,17 +16,27 @@ interface ChallengeProps {
   challenge: GameChallenge;
 }
 function Challenge({ challenge }: ChallengeProps) {
-  if (challenge.revealed) {
-    return (
-      <div className={challenge.matched ? "pass" : "fail"}>
-        {challenge.prefix}
-        {challenge.highlight && (
-          <span className="highlight">{challenge.highlight}</span>
-        )}
-        {challenge.suffix}
-      </div>
-    );
-  } else {
-    return <div>REDACTED</div>;
-  }
+  const content = challenge.revealed ? (
+    <>
+      {challenge.prefix}
+      {challenge.highlight && (
+        <span className="highlight">{challenge.highlight}</span>
+      )}
+      {challenge.suffix}
+    </>
+  ) : (
+    <>REDACTED</>
+  );
+
+  const matchedClassName =
+    challenge.revealed && challenge.matched ? "pass" : "fail";
+
+  const revealedClassName = challenge.revealed ? "revealed" : "concealed";
+  return (
+    <div
+      className={["challenge", matchedClassName, revealedClassName].join(" ")}
+    >
+      {content}
+    </div>
+  );
 }
