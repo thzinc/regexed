@@ -2,63 +2,30 @@ import { useEffect, useState } from "react";
 import { PuzzleChallenge } from "../../types";
 import { ChallengesProps } from "../ChallengesProps";
 import "./index.css";
+import { GameChallenge } from "../../use-game";
 
-export function NeedleInTheHaystack({ puzzle, pattern }: ChallengesProps) {
+export function NeedleInTheHaystack({ puzzle, challenges }: ChallengesProps) {
   return (
     <div>
-      {puzzle.challenges.map((c) => (
-        <Challenge challenge={c} revealed={true} pattern={pattern} />
+      {challenges.map((c) => (
+        <Challenge challenge={c} />
       ))}
     </div>
   );
 }
 
 interface ChallengeProps {
-  challenge: PuzzleChallenge;
-  revealed: boolean;
-  pattern: RegExp | undefined;
+  challenge: GameChallenge;
 }
-function Challenge({ challenge, revealed, pattern }: ChallengeProps) {
-  const [match, setMatch] = useState<Array<string>>(["", "", ""]);
-  const [foundNeedle, setFoundNeedle] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (revealed && pattern) {
-      const results = pattern.exec(challenge.haystack);
-      if (results && results.length > 0) {
-        const [result] = results;
-        setMatch([
-          challenge.haystack.slice(0, results.index),
-          challenge.haystack.slice(
-            results.index,
-            results.index + result.length
-          ),
-          challenge.haystack.slice(results.index + result.length),
-        ]);
-
-        if (challenge.needle instanceof Array) {
-          setFoundNeedle(challenge.needle.includes(result));
-        } else {
-          setFoundNeedle(result === challenge.needle);
-        }
-      } else {
-        setMatch([challenge.haystack, "", ""]);
-        setFoundNeedle(false);
-      }
-    } else {
-      setMatch([challenge.haystack, "", ""]);
-      setFoundNeedle(false);
-    }
-  }, [revealed, challenge, pattern]);
-
-  if (revealed) {
-    const [prefix, highlight, suffix] = match;
-
+function Challenge({ challenge }: ChallengeProps) {
+  if (challenge.revealed) {
     return (
-      <div className={foundNeedle ? "pass" : "fail"}>
-        {prefix}
-        {highlight && <span className="highlight">{highlight}</span>}
-        {suffix}
+      <div className={challenge.matched ? "pass" : "fail"}>
+        {challenge.prefix}
+        {challenge.highlight && (
+          <span className="highlight">{challenge.highlight}</span>
+        )}
+        {challenge.suffix}
       </div>
     );
   } else {

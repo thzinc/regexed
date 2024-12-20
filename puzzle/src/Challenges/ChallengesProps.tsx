@@ -1,6 +1,7 @@
 import { Puzzle } from "../types";
+import { GameChallenge } from "../use-game";
 
 export interface ChallengesProps {
   puzzle: Puzzle;
-  pattern: RegExp | undefined;
+  challenges: Array<GameChallenge>;
 }
