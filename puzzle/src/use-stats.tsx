@@ -1,8 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { GameState, RecordedGame } from "./types";
 import { MAX_ATTEMPTS } from "./use-game";
 
-export function useStats() {
+interface Stats {
+  showModal: () => void;
+  closeModal: () => void;
+  modalRef: RefObject<HTMLDialogElement>;
+  hasStats: boolean;
+  played: number;
+  winRate: number;
+  currentStreak: number;
+  bestStreak: number;
+  attemptCounts: number[];
+  highestAttemptCount: number;
+}
+
+export function useStats(): Stats {
   const modalRef = useRef<HTMLDialogElement>(null);
   const [played, setPlayed] = useState<number>(0);
   const [winRate, setWinRate] = useState<number>(0);
