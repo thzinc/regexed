@@ -27,7 +27,7 @@ export enum GameChallengeResult {
 export interface GameAttempt {
   pattern: RegExp;
   source: string;
-  results: Array<GameChallengeResult>;
+  results: GameChallengeResult[];
 }
 
 interface RecordedGame {
@@ -43,16 +43,25 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
   const [pattern, setPattern] = useState<RegExp>();
   const [attempts, setAttempts] = useState<GameAttempt[]>([]);
   const [gameState, setGameState] = useState<GameState>(GameState.Incomplete);
-  const [challengeMatches, setChallengeMatches] = useState<
-    Array<ChallengeMatch>
-  >([]);
-  const [revealedChallengeIndex, setRevealedChallengeIndex] =
-    useState<number>(-1);
-  const [gameChallenges, setGameChallenges] = useState<Array<GameChallenge>>(
+  const [challengeMatches, setChallengeMatches] = useState<ChallengeMatch[]>(
     []
   );
+  const [revealedChallengeIndex, setRevealedChallengeIndex] =
+    useState<number>(-1);
+  const [gameChallenges, setGameChallenges] = useState<GameChallenge[]>([]);
   const [remainingAttempts, setRemainingAttempts] =
     useState<number>(MAX_ATTEMPTS);
+
+  const updateRemainingAttempts = useCallback(
+    (gameState: GameState, attempts: GameAttempt[]) => {
+      if (gameState === GameState.Incomplete) {
+        setRemainingAttempts(MAX_ATTEMPTS - attempts.length);
+      } else {
+        setRemainingAttempts(0);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     const recordedGameString = localStorage.getItem(key);
@@ -64,7 +73,29 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
     setAttempts(attempts);
     setGameState(gameState);
     setRevealedChallengeIndex(revealedChallengeIndex);
-  }, []);
+    updateRemainingAttempts(gameState, attempts);
+  }, [key, updateRemainingAttempts]);
+
+  const recordGame = useCallback(
+    (
+      revealedChallengeIndex: number,
+      attempts: GameAttempt[],
+      gameState: GameState
+    ) => {
+      const recordedGame: RecordedGame = {
+        revealedChallengeIndex,
+        attempts,
+        gameState,
+      };
+      localStorage.setItem(key, JSON.stringify(recordedGame));
+
+      setRevealedChallengeIndex(revealedChallengeIndex);
+      setAttempts(attempts);
+      setGameState(gameState);
+      updateRemainingAttempts(gameState, attempts);
+    },
+    [key, updateRemainingAttempts]
+  );
 
   useEffect(() => {
     setChallengeMatches(
@@ -111,26 +142,6 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
       }))
     );
   }, [challenges, challengeMatches, revealedChallengeIndex]);
-
-  const recordGame = useCallback(
-    (
-      revealedChallengeIndex: number,
-      attempts: GameAttempt[],
-      gameState: GameState
-    ) => {
-      const recordedGame: RecordedGame = {
-        revealedChallengeIndex,
-        attempts,
-        gameState,
-      };
-      localStorage.setItem(key, JSON.stringify(recordedGame));
-
-      setRevealedChallengeIndex(revealedChallengeIndex);
-      setAttempts(attempts);
-      setGameState(gameState);
-    },
-    [puzzleNumber]
-  );
 
   return {
     pattern,
@@ -189,7 +200,6 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
       })();
 
       recordGame(nextRevealedChallengeIndex, nextAttempts, nextGameState);
-      setRemainingAttempts(MAX_ATTEMPTS - nextAttempts.length);
     },
   };
 }

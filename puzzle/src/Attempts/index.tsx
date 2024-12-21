@@ -4,7 +4,7 @@ import { Attempt } from "./Attempt";
 import "./index.css";
 
 interface AttemptsProps {
-  attempts: Array<GameAttempt>;
+  attempts: GameAttempt[];
   remainingAttempts?: number;
   challengeCount: number;
 }

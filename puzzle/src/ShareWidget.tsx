@@ -3,7 +3,7 @@ import "./ShareWidget.css";
 import { GameAttempt, GameChallengeResult } from "./use-game";
 
 interface ShareWidgetProps {
-  attempts: Array<GameAttempt>;
+  attempts: GameAttempt[];
   maxAttempts: number;
   puzzleNumber: string;
   won: boolean;

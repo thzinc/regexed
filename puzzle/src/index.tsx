@@ -23,7 +23,7 @@ if (puzzleEl) {
   const challengesEl = document.getElementById(
     puzzleEl.dataset.challengesId!
   ) as HTMLScriptElement;
-  const challenges = JSON.parse(challengesEl.textContent!) as Array<any>;
+  const challenges = JSON.parse(challengesEl.textContent!) as any[];
   puzzle.render(
     <React.StrictMode>
       <PuzzleApp
@@ -51,31 +51,26 @@ if (rootEl) {
       {
         haystack: "omg, have you seen regexed.com?",
         needle: ["regexed.com", "regexed.com?"],
-        metadata: { sender: "Alice" },
       },
       {
         haystack:
           "Whoa! Today's puzzle at https://regexed.com/puzzle/3 is very meta.",
         needle: "https://regexed.com/puzzle/3",
-        metadata: { sender: "Bob" },
       },
       {
         haystack:
           "Wait, are **we** in this puzzle? Is https://regexed.com/puzzle/3#description talking about us?",
         needle: "https://regexed.com/puzzle/3#description",
-        metadata: { sender: "Bob" },
       },
       {
         haystack:
           "I'm going to blog about this at http://bloggerpress.example?id=9176431&ref=The%20Meta. Help me go viral?",
         needle: "http://bloggerpress.example?id=9176431&ref=The%20Meta",
-        metadata: { sender: "Alice" },
       },
       {
         haystack:
           "You know that's not how it works 😐 Nothing at bloggerpress.example goes #viral.",
         needle: "bloggerpress.example",
-        metadata: { sender: "Bob" },
       },
     ],
   } as Puzzle;
