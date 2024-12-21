@@ -1,6 +1,6 @@
 import { Attempts } from "./Attempts";
 import { ShareWidget } from "./ShareWidget";
-import { GameAttempt, GameState } from "./use-game";
+import { GameAttempt, GameState } from "./types";
 import "./GameResult.css";
 
 interface GameResultProps {

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import "./ShareWidget.css";
-import { GameAttempt, GameChallengeResult } from "./use-game";
+import { GameAttempt, GameChallengeResult } from "./types";
 
 interface ShareWidgetProps {
   attempts: GameAttempt[];

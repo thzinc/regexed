@@ -1,5 +1,5 @@
 import { Puzzle } from "../types";
-import { GameChallenge } from "../use-game";
+import { GameChallenge } from "../types";
 
 export interface ChallengesProps {
   puzzle: Puzzle;

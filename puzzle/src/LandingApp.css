@@ -24,6 +24,15 @@
 .container button.cta:hover {
   background-color: #222;
 }
+
 .container button.cta:active {
   background-color: #444;
+}
+
+.stats-dialog {
+  color: blue;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }

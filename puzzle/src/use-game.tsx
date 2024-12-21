@@ -1,42 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { Puzzle, PuzzleChallenge } from "./types";
+import {
+  ChallengeMatch,
+  GameAttempt,
+  GameChallenge,
+  GameChallengeResult,
+  GameState,
+  Puzzle,
+  RecordedGame,
+} from "./types";
 
-export interface GameChallenge extends PuzzleChallenge, ChallengeMatch {
-  revealed: boolean;
-}
-
-interface ChallengeMatch {
-  matched: boolean;
-  prefix: string;
-  highlight: string;
-  suffix: string;
-}
-
-export enum GameState {
-  Incomplete,
-  Won,
-  Lost,
-}
-
-export enum GameChallengeResult {
-  Passed,
-  Failed,
-  NotAttempted,
-}
-
-export interface GameAttempt {
-  pattern: RegExp;
-  source: string;
-  results: GameChallengeResult[];
-}
-
-interface RecordedGame {
-  revealedChallengeIndex: number;
-  attempts: GameAttempt[];
-  gameState: GameState;
-}
-
-const MAX_ATTEMPTS = 6;
+export const MAX_ATTEMPTS = 6;
 
 export function useGame({ puzzleNumber, challenges }: Puzzle) {
   const key = `puzzles/${puzzleNumber}`;

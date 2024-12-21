@@ -2,8 +2,8 @@ import { AttemptsRemaining } from "./AttemptsRemaining";
 import { Challenges } from "./Challenges";
 import { GameResult } from "./GameResult";
 import { PatternInput } from "./PatternInput";
-import { Puzzle } from "./types";
-import { GameState, useGame } from "./use-game";
+import { Puzzle, GameState } from "./types";
+import { useGame } from "./use-game";
 
 interface PuzzleAppProps {
   puzzle: Puzzle;

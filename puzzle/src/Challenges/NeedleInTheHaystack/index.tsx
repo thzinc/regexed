@@ -1,5 +1,5 @@
 import { ChallengesProps } from "../ChallengesProps";
-import { GameChallenge } from "../../use-game";
+import { GameChallenge } from "../../types";
 import "./index.css";
 import { useEffect, useState } from "react";
 
