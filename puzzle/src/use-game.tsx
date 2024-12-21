@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Puzzle, PuzzleChallenge } from "./types";
 
 export interface GameChallenge extends PuzzleChallenge, ChallengeMatch {
@@ -30,11 +30,18 @@ export interface GameAttempt {
   results: Array<GameChallengeResult>;
 }
 
+interface RecordedGame {
+  revealedChallengeIndex: number;
+  attempts: GameAttempt[];
+  gameState: GameState;
+}
+
 const MAX_ATTEMPTS = 6;
 
-export function useGame({ challenges }: Puzzle) {
+export function useGame({ puzzleNumber, challenges }: Puzzle) {
+  const key = `puzzles/${puzzleNumber}`;
   const [pattern, setPattern] = useState<RegExp>();
-  const [attempts, setAttempts] = useState<Array<GameAttempt>>([]);
+  const [attempts, setAttempts] = useState<GameAttempt[]>([]);
   const [gameState, setGameState] = useState<GameState>(GameState.Incomplete);
   const [challengeMatches, setChallengeMatches] = useState<
     Array<ChallengeMatch>
@@ -46,6 +53,18 @@ export function useGame({ challenges }: Puzzle) {
   );
   const [remainingAttempts, setRemainingAttempts] =
     useState<number>(MAX_ATTEMPTS);
+
+  useEffect(() => {
+    const recordedGameString = localStorage.getItem(key);
+    if (!recordedGameString) return;
+
+    const { attempts, gameState, revealedChallengeIndex } = JSON.parse(
+      recordedGameString
+    ) as RecordedGame;
+    setAttempts(attempts);
+    setGameState(gameState);
+    setRevealedChallengeIndex(revealedChallengeIndex);
+  }, []);
 
   useEffect(() => {
     setChallengeMatches(
@@ -93,6 +112,26 @@ export function useGame({ challenges }: Puzzle) {
     );
   }, [challenges, challengeMatches, revealedChallengeIndex]);
 
+  const recordGame = useCallback(
+    (
+      revealedChallengeIndex: number,
+      attempts: GameAttempt[],
+      gameState: GameState
+    ) => {
+      const recordedGame: RecordedGame = {
+        revealedChallengeIndex,
+        attempts,
+        gameState,
+      };
+      localStorage.setItem(key, JSON.stringify(recordedGame));
+
+      setRevealedChallengeIndex(revealedChallengeIndex);
+      setAttempts(attempts);
+      setGameState(gameState);
+    },
+    [puzzleNumber]
+  );
+
   return {
     pattern,
     setPattern,
@@ -139,17 +178,18 @@ export function useGame({ challenges }: Puzzle) {
         },
       ];
 
-      setRevealedChallengeIndex(nextRevealedChallengeIndex);
-      setAttempts(nextAttempts);
-      setRemainingAttempts(MAX_ATTEMPTS - nextAttempts.length);
+      const nextGameState = (function () {
+        if (gameChallenges.every((gc) => gc.matched)) {
+          return GameState.Won;
+        } else if (nextAttempts.length < MAX_ATTEMPTS) {
+          return GameState.Incomplete;
+        } else {
+          return GameState.Lost;
+        }
+      })();
 
-      if (gameChallenges.every((gc) => gc.matched)) {
-        setGameState(GameState.Won);
-      } else if (nextAttempts.length < MAX_ATTEMPTS) {
-        setGameState(GameState.Incomplete);
-      } else {
-        setGameState(GameState.Lost);
-      }
+      recordGame(nextRevealedChallengeIndex, nextAttempts, nextGameState);
+      setRemainingAttempts(MAX_ATTEMPTS - nextAttempts.length);
     },
   };
 }
