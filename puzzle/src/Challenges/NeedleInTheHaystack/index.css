@@ -3,38 +3,29 @@
 }
 
 .challenge {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
   padding: 0.5rem;
+  box-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  background-color: #ba99e3;
+  border: solid 1px #000000;
 }
 
-.pass {
-  background-color: rgba(0, 255, 0, 0.25);
+.challenge .indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.challenge.concealed .content {
+  color: transparent;
+  text-shadow: 0 0 0.5rem #000000;
 }
 
 .highlight {
   background-color: moccasin;
-}
-
-.group-chat {
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.group-chat .challenge {
-  width: 60%;
-  margin: 1rem 0;
-}
-
-.group-chat .challenge:nth-child(2n) {
-  align-self: flex-end;
-}
-
-.group-chat .highlight {
-  background-color: darkorchid;
-}
-
-.group-chat .concealed {
-  visibility: hidden;
 }

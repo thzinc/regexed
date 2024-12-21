@@ -1,6 +1,7 @@
 import { ChallengesProps } from "../ChallengesProps";
 import { GameChallenge } from "../../use-game";
 import "./index.css";
+import { useEffect, useState } from "react";
 
 export function NeedleInTheHaystack({ puzzle, challenges }: ChallengesProps) {
   return (
@@ -15,7 +16,26 @@ export function NeedleInTheHaystack({ puzzle, challenges }: ChallengesProps) {
 interface ChallengeProps {
   challenge: GameChallenge;
 }
+
 function Challenge({ challenge }: ChallengeProps) {
+  const [redacted, setRedacted] = useState<string>("REDACTED");
+
+  useEffect(() => {
+    const redacted = challenge.haystack
+      .split(/\s/g)
+      .map((word) => {
+        return Array.from(word)
+          .map(() => {
+            const r = String.fromCharCode(33 + Math.floor(Math.random() * 93));
+            return r;
+          })
+          .join("");
+      })
+      .join(" ");
+
+    setRedacted(redacted);
+  }, [challenge.haystack]);
+
   const content = challenge.revealed ? (
     <>
       {challenge.prefix}
@@ -25,7 +45,7 @@ function Challenge({ challenge }: ChallengeProps) {
       {challenge.suffix}
     </>
   ) : (
-    <>REDACTED</>
+    <>{redacted}</>
   );
 
   const matchedClassName =
@@ -33,10 +53,15 @@ function Challenge({ challenge }: ChallengeProps) {
 
   const revealedClassName = challenge.revealed ? "revealed" : "concealed";
   return (
-    <div
-      className={["challenge", matchedClassName, revealedClassName].join(" ")}
-    >
-      {content}
-    </div>
+    <>
+      <div
+        className={["challenge", matchedClassName, revealedClassName].join(" ")}
+      >
+        <div className="indicator">
+          {challenge.revealed ? (challenge.matched ? "✅" : "❌") : ""}
+        </div>
+        <div className="content">{content}</div>
+      </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
-import { Attempts } from "./Attempts";
-import { PatternInput } from "./PatternInput";
+import { AttemptsRemaining } from "./AttemptsRemaining";
 import { Challenges } from "./Challenges";
+import { PatternInput } from "./PatternInput";
 import { Puzzle } from "./types";
 import { GameState, useGame } from "./use-game";
 
@@ -9,28 +9,18 @@ interface PuzzleAppProps {
 }
 
 export function PuzzleApp({ puzzle }: PuzzleAppProps) {
-  const {
-    gameState,
-    gameChallenges,
-    attempts,
-    remainingAttempts,
-    attempt,
-    setPattern,
-  } = useGame(puzzle);
+  const { gameState, gameChallenges, remainingAttempts, attempt, setPattern } =
+    useGame(puzzle);
 
   return (
     <>
-      <Challenges puzzle={puzzle} challenges={gameChallenges} />
       <PatternInput
         disabled={gameState !== GameState.Incomplete}
         onChange={(pattern) => setPattern(pattern)}
         onSubmit={(pattern, source) => attempt(pattern, source)}
       />
-      <Attempts
-        remainingAttempts={remainingAttempts}
-        challengeCount={gameChallenges.length}
-        attempts={attempts}
-      />
+      <AttemptsRemaining count={remainingAttempts} />
+      <Challenges puzzle={puzzle} challenges={gameChallenges} />
     </>
   );
 }
