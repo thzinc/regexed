@@ -5,7 +5,7 @@ import "./index.css";
 
 interface AttemptsProps {
   attempts: Array<GameAttempt>;
-  remainingAttempts: number;
+  remainingAttempts?: number;
   challengeCount: number;
 }
 
@@ -14,7 +14,7 @@ interface PlaceholderAttempt {
 }
 
 export function Attempts({
-  remainingAttempts,
+  remainingAttempts = 0,
   challengeCount,
   attempts,
 }: AttemptsProps) {
@@ -36,7 +36,6 @@ export function Attempts({
 
   return (
     <div className="attempts">
-      {remainingAttempts} attempts remaining
       <ul>
         {attempts.map((attempt, i) => (
           <Attempt key={i} source={attempt.source} results={attempt.results} />
