@@ -18,7 +18,8 @@ export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
     winRate,
     attemptCounts,
     modalRef,
-  } = useStats();
+    hasCompletedLatestPuzzle,
+  } = useStats(puzzleNumber);
 
   const playPuzzle = useCallback(() => {
     if (!playUrl) return;
@@ -45,7 +46,7 @@ export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
           </button>
         )}
         <button type="button" className="cta" tabIndex={1} onClick={playPuzzle}>
-          Play
+          {hasCompletedLatestPuzzle ? "View Result" : "Play"}
         </button>
       </fieldset>
     </>

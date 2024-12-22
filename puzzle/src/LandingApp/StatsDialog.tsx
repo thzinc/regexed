@@ -1,4 +1,5 @@
 import { RefObject, useMemo } from "react";
+import "./StatsDialog.css";
 
 interface StatsDialogProps {
   onClose: () => void;
@@ -52,11 +53,13 @@ export function StatsDialog({
         </div>
       </div>
       <div className="attempt-stats">
+        <h2>Games by attempts</h2>
         <ol>
-          {attemptCounts.map((attemptCount, attempt) => (
+          {attemptCounts.map((attemptCount, i) => (
             <li>
-              {attempt}{" "}
+              <span>{i + 1}.</span>
               <progress value={attemptCount} max={highestAttemptCount} />
+              <span>({attemptCount})</span>
             </li>
           ))}
         </ol>

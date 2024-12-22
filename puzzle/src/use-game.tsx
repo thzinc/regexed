@@ -59,6 +59,8 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
         revealedChallengeIndex,
         attempts,
         gameState,
+        updatedAt: new Date().toISOString(),
+        puzzleNumber,
       };
       localStorage.setItem(key, JSON.stringify(recordedGame));
 

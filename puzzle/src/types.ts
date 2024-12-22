@@ -43,4 +43,6 @@ export interface RecordedGame {
   revealedChallengeIndex: number;
   attempts: GameAttempt[];
   gameState: GameState;
+  updatedAt: string;
+  puzzleNumber: string;
 }

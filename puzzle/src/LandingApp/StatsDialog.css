@@ -1,0 +1,48 @@
+.stats-dialog {
+  border-radius: 1rem;
+  background-color: #ba99e3;
+}
+
+.stats-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.stats-dialog .win-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stats-dialog .win-stats > * {
+  display: flex;
+  gap: 1rem;
+}
+
+.stats-dialog .win-stats > * > figure {
+  flex: 1;
+  align-content: start;
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.stats-dialog .win-stats figcaption {
+  font-size: 0.75rem;
+  white-space: nowrap;
+  margin-bottom: 0.25rem;
+}
+
+.stats-dialog .attempt-stats {
+  margin: 1rem;
+}
+
+.stats-dialog .attempt-stats ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stats-dialog .attempt-stats ol li {
+  display: flex;
+  gap: 1rem;
+}
