@@ -6,8 +6,8 @@ import "./index.css";
 export function NeedleInTheHaystack({ puzzle, challenges }: ChallengesProps) {
   return (
     <div className={["challenges", puzzle.theme].join(" ")}>
-      {challenges.map((c) => (
-        <Challenge challenge={c} />
+      {challenges.map((c, i) => (
+        <Challenge key={i} challenge={c} />
       ))}
     </div>
   );

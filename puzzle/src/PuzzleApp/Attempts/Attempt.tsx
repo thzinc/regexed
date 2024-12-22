@@ -33,8 +33,9 @@ export function Attempt({
   return (
     <li className={["attempt", placeholder && "placeholder"].join(" ")}>
       <div className="results">
-        {results?.map((result) => (
+        {results?.map((result, i) => (
           <div
+            key={i}
             className={["result", classNameMap[result]].join(" ")}
             aria-label={labelMap[result]}
           >

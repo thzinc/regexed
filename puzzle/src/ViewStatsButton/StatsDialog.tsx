@@ -57,7 +57,7 @@ export function StatsDialog({
         <h2>Games by attempts</h2>
         <ol>
           {attemptCounts.map((attemptCount, i) => (
-            <li>
+            <li key={i}>
               <span>{i + 1}.</span>
               <progress value={attemptCount} max={highestAttemptCount} />
               <span>({attemptCount})</span>
