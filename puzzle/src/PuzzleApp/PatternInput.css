@@ -1,0 +1,49 @@
+.pattern-input fieldset {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+}
+
+.pattern-input .input {
+  flex: 1;
+}
+
+.pattern-input label {
+  display: block;
+}
+
+.pattern-input input[type="text"] {
+  font-family: monospace;
+  font-size: 1.5rem;
+  width: 100%;
+  height: 3rem;
+  box-sizing: border-box;
+}
+
+.pattern-input input[type="text"].invalid {
+  text-decoration-color: red;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}
+
+.pattern-input .action {
+  max-width: 10rem;
+}
+
+.pattern-input button {
+  font-size: 1.5rem;
+  height: 3rem;
+  box-sizing: border-box;
+}
+
+.pattern-input .error {
+  display: flex;
+  min-height: 1.5rem;
+  align-content: center;
+  justify-content: center;
+}
+
+.pattern-input .error * {
+  align-self: center;
+}

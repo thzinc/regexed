@@ -1,0 +1,13 @@
+<div class="puzzle-card">
+  <div class="h-event">
+    <h2 class="dt-start">{{ include.date | date: "%B %e, %Y" }}</h2>
+    <p>
+      <a href="{{include.href | escape}}" class="u-url">
+        <span class="p-name">Puzzle {{ include.puzzle_number }}</span>
+        –
+        <span class="p-summary">{{ include.title }}</span>
+      </a>
+    </p>
+    <p>By {{ include.author }}</p>
+  </div>
+</div>

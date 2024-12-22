@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+    <style type="text/css">
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: auto;
+        background-color: #8940e3;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div
+      id="landing"
+      data-puzzle-number="3"
+      data-play-url="/puzzles/3"></div>
+    <hr>
+    <script type="application/json" id="challenges">
+      [
+        {
+          "haystack": "omg, have you seen regexed.com?",
+          "needle": ["regexed.com", "regexed.com?"]
+        },
+        {
+          "haystack": "Whoa! Today's puzzle at https://regexed.com/puzzle/3 is very meta.",
+          "needle": "https://regexed.com/puzzle/3"
+        },
+        {
+          "haystack": "Wait, are **we** in this puzzle? Is https://regexed.com/puzzle/3#description talking about us?",
+          "needle": "https://regexed.com/puzzle/3#description"
+        },
+        {
+          "haystack": "I'm going to blog about this at http://bloggerpress.example?id=9176431&ref=The%20Meta. Help me go viral?",
+          "needle": "http://bloggerpress.example?id=9176431&ref=The%20Meta"
+        },
+        {
+          "haystack": "You know that's not how it works 😐 Nothing at bloggerpress.example goes #viral.",
+          "needle": "bloggerpress.example"
+        }
+      ]
+    </script>
+    <div
+      id="puzzle"
+      data-puzzle-number="3"
+      data-type="needle-in-the-haystack"
+      data-challenges-id="challenges"></div>
+
+  </body>
+</html>

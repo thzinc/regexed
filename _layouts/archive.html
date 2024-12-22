@@ -1,0 +1,47 @@
+{%- assign puzzles = site.puzzles | reverse -%}
+{%- assign trimmed_content = content | strip -%}
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include header.html %}
+    <main>
+      <article>
+        {%- if trimmed_content != "" -%}
+          <p>{{ trimmed_content }}</p>
+        {%- endif -%}
+        <ul>
+          {%- if site.show_drafts -%}
+            <h1>Spoilers</h1>
+            {%- for puzzle in site.spoilers -%}
+              {%- assign puzzle_number = puzzle.id | split: "/" | last -%}
+              <li class="h-event">
+                <a href="{{puzzle.id | escape}}" class="u-url">
+                  <span class="p-name">{{ puzzle_number }}</span>
+                  –
+                  <span class="dt-start">{{ puzzle.date | date: "%B %e, %Y" }}</span>
+                  –
+                  <span class="p-summary">{{ puzzle.title }}</span>
+                </a>
+              </li>
+            {%- endfor -%}
+            <hr>
+          {%- endif -%}
+          {%- for puzzle in puzzles -%}
+            {%- assign puzzle_number = puzzle.id | split: "/" | last -%}
+            <li class="h-event">
+              <a href="{{puzzle.id | escape}}" class="u-url">
+                <span class="p-name">{{ puzzle_number }}</span>
+                –
+                <span class="dt-start">{{ puzzle.date | date: "%B %e, %Y" }}</span>
+                –
+                <span class="p-summary">{{ puzzle.title }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </article>
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

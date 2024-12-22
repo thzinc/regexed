@@ -1,14 +1,34 @@
+{%- assign curr_puzzle = site.puzzles | last -%}
+{%- assign puzzle_number = curr_puzzle.id | split: "/" | last -%}
+{%- assign trimmed_content = content | strip -%}
 <!DOCTYPE html>
 <html>
   {% include head.html %}
   <body>
-    <header>
-      <img alt="Logo consisting of speech bubble containing the expression &quot;^.*$&quot;" src="/assets/logo-large.png">
-
-      <h1>regexed</h1>
-    </header>
     <main>
-      {{ content }}
+      <figure class="hero">
+        <img alt="Logo consisting of speech bubble containing the expression &quot;^.*$&quot;" src="/assets/logo-landing.png">
+
+        <h1>regexed</h1>
+      </figure>
+      <article>
+        {%- if trimmed_content != "" -%}
+          <p>{{ trimmed_content }}</p>
+        {%- endif -%}
+      </article>
+      {%- if curr_puzzle %}
+        <div
+          id="landing"
+          data-puzzle-number="{{puzzle_number | escape}}"
+          data-play-url="{{ curr_puzzle.id |  escape }}"></div>
+        {% include puzzleCard.html href=curr_puzzle.id date=curr_puzzle.date puzzle_number=puzzle_number author=curr_puzzle.author title=curr_puzzle.title %}
+      {%- else -%}
+        <p style="text-align: center">
+          In the making by
+          <a href="https://thzinc.com">thzinc</a>
+        </p>
+      {%- endif -%}
     </main>
+    {% include footer.html %}
   </body>
 </html>
