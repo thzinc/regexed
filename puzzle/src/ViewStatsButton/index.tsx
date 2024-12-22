@@ -29,7 +29,12 @@ export function ViewStatsButton({ puzzleNumber }: ViewStatsButtonProps) {
         modalRef={modalRef}
       />
       {hasStats && (
-        <Button type="button" tabIndex={2} onClick={showModal}>
+        <Button
+          analyticsEventName="View Stats"
+          type="button"
+          tabIndex={2}
+          onClick={showModal}
+        >
           View Stats
         </Button>
       )}

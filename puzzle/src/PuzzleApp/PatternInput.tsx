@@ -51,7 +51,10 @@ export function PatternInput({
     [valid, pattern, onSubmit, patternString]
   );
   return (
-    <form onSubmit={submit} className="pattern-input">
+    <form
+      onSubmit={submit}
+      className="pattern-input plausible-event-name=Attempt"
+    >
       <label htmlFor="pattern">Regular Expression</label>
       <fieldset>
         <div className="input">

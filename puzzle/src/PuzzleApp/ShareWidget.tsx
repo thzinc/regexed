@@ -52,7 +52,12 @@ export function ShareWidget({
   return (
     <div className="share">
       <ViewStatsButton puzzleNumber={puzzleNumber} />
-      <Button primaryCallToAction type="button" onClick={share}>
+      <Button
+        primaryCallToAction
+        analyticsEventName="Share"
+        type="button"
+        onClick={share}
+      >
         Share {shared ? "✅" : "📋"}
       </Button>
     </div>

@@ -23,6 +23,7 @@ export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
         <Button
           type="button"
           primaryCallToAction
+          analyticsEventName="Play"
           tabIndex={1}
           onClick={playPuzzle}
         >
