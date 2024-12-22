@@ -42,11 +42,13 @@ export function PatternInput({
 
   const submit = useCallback(
     (ev: FormEvent<HTMLFormElement>) => {
+      ev.stopPropagation();
       ev.preventDefault();
       if (!valid) return;
       if (!pattern) return;
 
       onSubmit(pattern, patternString);
+      return false;
     },
     [valid, pattern, onSubmit, patternString]
   );
