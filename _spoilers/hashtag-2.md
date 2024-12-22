@@ -12,7 +12,7 @@ challenges:
   - haystack: "I know Apple Pie is the top horse, but Lucky Streak is my #HopefulNumber1"
     needle: "#HopefulNumber1"
   - haystack: "I know she's all grown up, but she's #MyNotSoLittlePony"
-    needle: "#MyNotSoLittlePony "
+    needle: "#MyNotSoLittlePony"
 ---
 
 Find the <code>#hashtag</code> in each of the social media posts.
