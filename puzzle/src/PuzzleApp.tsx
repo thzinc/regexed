@@ -33,7 +33,9 @@ export function PuzzleApp({ puzzle }: PuzzleAppProps) {
         onChange={(pattern) => setPattern(pattern)}
         onSubmit={(pattern, source) => attempt(pattern, source)}
       />
-      <AttemptsRemaining count={remainingAttempts} />
+      <AttemptsRemaining
+        count={gameState === GameState.Incomplete ? remainingAttempts : 0}
+      />
       <Challenges puzzle={puzzle} challenges={gameChallenges} />
     </>
   );
