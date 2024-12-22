@@ -11,26 +11,23 @@
 
         <h1>regexed</h1>
       </figure>
-      {%- if trimmed_content != "" -%}
-        <p>{{ trimmed_content }}</p>
+      <article>
+        {%- if trimmed_content != "" -%}
+          <p>{{ trimmed_content }}</p>
+        {%- endif -%}
+      </article>
+      {%- if curr_puzzle %}
+        <div
+          id="landing"
+          data-puzzle-number="{{puzzle_number | escape}}"
+          data-play-url="{{ curr_puzzle.id |  escape }}"></div>
+        {% include puzzleCard.html href=curr_puzzle.id date=curr_puzzle.date puzzle_number=puzzle_number author=curr_puzzle.author title=curr_puzzle.title %}
+      {%- else -%}
+        <p style="text-align: center">
+          In the making by
+          <a href="https://thzinc.com">thzinc</a>
+        </p>
       {%- endif -%}
-      <div
-        id="landing"
-        data-puzzle-number="{{puzzle_number | escape}}"
-        data-play-url="{{ curr_puzzle.id |  escape }}"></div>
-      <div class="puzzle-card">
-        <div class="h-event">
-          <h2 class="dt-start">{{ curr_puzzle.date | date: "%B %e, %Y" }}</h2>
-          <p>
-            <a href="{{curr_puzzle.id | escape}}" class="u-url">
-              <span class="p-name">Puzzle {{ puzzle_number }}</span>
-              –
-              <span class="p-summary">{{ curr_puzzle.title }}</span>
-            </a>
-          </p>
-          <p>By {{ curr_puzzle.author }}</p>
-        </div>
-      </div>
     </main>
     {% include footer.html %}
   </body>

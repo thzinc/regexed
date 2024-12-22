@@ -7,6 +7,7 @@
     {% include header.html %}
     <main>
       <article>
+        {% include puzzleCard.html href=page.id date=page.date puzzle_number=puzzle_number author=page.author title=page.title %}
         {%- if trimmed_content != "" -%}
           <p>{{ trimmed_content }}</p>
         {%- endif -%}
@@ -20,6 +21,7 @@
           data-type="{{page.type | escape}}"
           data-theme="{{page.theme | escape}}"
           data-challenges-id="challenges"></div>
+
       </article>
     </main>
     {% include footer.html %}

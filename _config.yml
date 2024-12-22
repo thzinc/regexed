@@ -9,6 +9,8 @@ markdown: kramdown
 collections:
   puzzles:
     output: true
+  spoilers:
+    output: true
 defaults:
   - scope:
       path: ""
@@ -16,6 +18,12 @@ defaults:
     values:
       layout: "puzzle"
       permalink: /puzzles/:name
+  - scope:
+      path: ""
+      type: "spoilers"
+    values:
+      layout: "puzzle"
+      permalink: /spoilers/:name
 feed:
   collections:
     - puzzles
