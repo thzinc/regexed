@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 import "./ShareWidget.css";
-import { GameAttempt, GameChallengeResult } from "./types";
-import { Button } from "./Button";
+import { GameAttempt, GameChallengeResult } from "../types";
+import { Button } from "../Button";
+import { ViewStatsButton } from "../ViewStatsButton";
 
 interface ShareWidgetProps {
   attempts: GameAttempt[];
@@ -50,6 +51,7 @@ export function ShareWidget({
   }, [attempts, maxAttempts, puzzleNumber, shared, won]);
   return (
     <div className="share">
+      <ViewStatsButton puzzleNumber={puzzleNumber} />
       <Button primaryCallToAction type="button" onClick={share}>
         Share {shared ? "✅" : "📋"}
       </Button>

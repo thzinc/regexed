@@ -1,26 +1,15 @@
 import { useCallback } from "react";
 import { useStats } from "../use-stats";
-import "./index.css";
-import { StatsDialog } from "./StatsDialog";
 import { Button } from "../Button";
+import { ViewStatsButton } from "../ViewStatsButton";
+import "./index.css";
 
 interface LandingAppProps {
-  puzzleNumber: string | undefined;
+  puzzleNumber?: string;
   playUrl: string | undefined;
 }
 export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
-  const {
-    showModal,
-    hasStats,
-    closeModal,
-    played,
-    bestStreak,
-    currentStreak,
-    winRate,
-    attemptCounts,
-    modalRef,
-    hasCompletedLatestPuzzle,
-  } = useStats(puzzleNumber);
+  const { hasCompletedLatestPuzzle } = useStats(puzzleNumber);
 
   const playPuzzle = useCallback(() => {
     if (!playUrl) return;
@@ -29,21 +18,8 @@ export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
 
   return (
     <>
-      <StatsDialog
-        onClose={closeModal}
-        played={played}
-        bestStreak={bestStreak}
-        currentStreak={currentStreak}
-        winRate={winRate}
-        attemptCounts={attemptCounts}
-        modalRef={modalRef}
-      />
       <fieldset className="container">
-        {hasStats && (
-          <Button type="button" tabIndex={2} onClick={showModal}>
-            View Stats
-          </Button>
-        )}
+        <ViewStatsButton puzzleNumber={puzzleNumber} />
         <Button
           type="button"
           primaryCallToAction

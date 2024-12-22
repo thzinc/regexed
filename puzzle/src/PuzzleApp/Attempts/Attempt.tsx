@@ -1,4 +1,4 @@
-import { GameChallengeResult } from "../types";
+import { GameChallengeResult } from "../../types";
 import "./Attempt.css";
 
 interface AttemptProps {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameAttempt, GameChallengeResult } from "../types";
+import { GameAttempt, GameChallengeResult } from "../../types";
 import { Attempt } from "./Attempt";
 import "./index.css";
 

@@ -83,7 +83,7 @@ export function useStats(latestPuzzleNumber?: string): Stats {
     setCurrentStreak(currentStreak);
     setBestStreak(bestStreak);
     setAttemptCounts(attemptCounts);
-  }, [fetchCompletedGames]);
+  }, [fetchCompletedGames, latestPuzzleNumber]);
 
   return {
     showModal: () => modalRef.current?.showModal(),

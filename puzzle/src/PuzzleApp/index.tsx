@@ -2,8 +2,8 @@ import { AttemptsRemaining } from "./AttemptsRemaining";
 import { Challenges } from "./Challenges";
 import { GameResult } from "./GameResult";
 import { PatternInput } from "./PatternInput";
-import { Puzzle, GameState } from "./types";
-import { useGame } from "./use-game";
+import { Puzzle, GameState } from "../types";
+import { useGame } from "../use-game";
 
 interface PuzzleAppProps {
   puzzle: Puzzle;
@@ -11,11 +11,11 @@ interface PuzzleAppProps {
 
 export function PuzzleApp({ puzzle }: PuzzleAppProps) {
   const {
-    gameState,
-    gameChallenges,
-    remainingAttempts,
-    attempts,
     attempt,
+    attempts,
+    gameChallenges,
+    gameState,
+    remainingAttempts,
     setPattern,
   } = useGame(puzzle);
 

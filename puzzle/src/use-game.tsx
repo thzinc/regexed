@@ -11,10 +11,19 @@ import {
 
 export const MAX_ATTEMPTS = 6;
 
+interface Game {
+  attempt: (pattern: RegExp, source: string) => void;
+  attempts: GameAttempt[];
+  gameChallenges: GameChallenge[];
+  gameState: GameState;
+  remainingAttempts: number;
+  setPattern: (pattern?: RegExp) => void;
+}
+
 const CURRENT_RECORDED_GAME_VERSION = "1.0.0";
 
-export function useGame({ puzzleNumber, challenges }: Puzzle) {
-  const key = `puzzles/${puzzleNumber}`;
+export function useGame({ puzzleNumber, challenges }: Puzzle): Game {
+  const localStorageKey = `puzzles/${puzzleNumber}`;
   const [pattern, setPattern] = useState<RegExp>();
   const [attempts, setAttempts] = useState<GameAttempt[]>([]);
   const [gameState, setGameState] = useState<GameState>(GameState.Incomplete);
@@ -27,15 +36,12 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
   const [remainingAttempts, setRemainingAttempts] =
     useState<number>(MAX_ATTEMPTS);
 
-  const updateRemainingAttempts = useCallback(
-    (gameState: GameState, attempts: GameAttempt[]) => {
-      setRemainingAttempts(MAX_ATTEMPTS - attempts.length);
-    },
-    []
-  );
+  const updateRemainingAttempts = useCallback((attempts: GameAttempt[]) => {
+    setRemainingAttempts(MAX_ATTEMPTS - attempts.length);
+  }, []);
 
   useEffect(() => {
-    const recordedGameString = localStorage.getItem(key);
+    const recordedGameString = localStorage.getItem(localStorageKey);
     if (!recordedGameString) return;
 
     const { attempts, gameState, revealedChallengeIndex } = JSON.parse(
@@ -44,8 +50,8 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
     setAttempts(attempts);
     setGameState(gameState);
     setRevealedChallengeIndex(revealedChallengeIndex);
-    updateRemainingAttempts(gameState, attempts);
-  }, [key, updateRemainingAttempts]);
+    updateRemainingAttempts(attempts);
+  }, [localStorageKey, updateRemainingAttempts]);
 
   const recordGame = useCallback(
     (
@@ -61,14 +67,14 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
         puzzleNumber,
         version: CURRENT_RECORDED_GAME_VERSION,
       };
-      localStorage.setItem(key, JSON.stringify(recordedGame));
+      localStorage.setItem(localStorageKey, JSON.stringify(recordedGame));
 
       setRevealedChallengeIndex(revealedChallengeIndex);
       setAttempts(attempts);
       setGameState(gameState);
-      updateRemainingAttempts(gameState, attempts);
+      updateRemainingAttempts(attempts);
     },
-    [key, puzzleNumber, updateRemainingAttempts]
+    [localStorageKey, puzzleNumber, updateRemainingAttempts]
   );
 
   useEffect(() => {
@@ -117,14 +123,8 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
     );
   }, [challenges, challengeMatches, revealedChallengeIndex]);
 
-  return {
-    pattern,
-    setPattern,
-    attempts,
-    remainingAttempts,
-    gameState,
-    gameChallenges,
-    attempt(pattern: RegExp, source: string) {
+  const attempt = useCallback(
+    (pattern: RegExp, source: string) => {
       if (gameState !== GameState.Incomplete) return;
 
       const { i: lastConsecutiveMatchIndex } = gameChallenges.reduce(
@@ -175,5 +175,15 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
 
       recordGame(nextRevealedChallengeIndex, nextAttempts, nextGameState);
     },
+    [attempts, gameChallenges, gameState, recordGame]
+  );
+
+  return {
+    attempt,
+    attempts,
+    gameChallenges,
+    gameState,
+    remainingAttempts,
+    setPattern,
   };
 }
