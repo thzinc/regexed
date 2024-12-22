@@ -1,5 +1,6 @@
 import { RefObject, useMemo } from "react";
 import "./StatsDialog.css";
+import { Button } from "../Button";
 
 interface StatsDialogProps {
   onClose: () => void;
@@ -64,8 +65,10 @@ export function StatsDialog({
           ))}
         </ol>
       </div>
-      <div>
-        <button onClick={onClose}>Close</button>
+      <div className="actions">
+        <Button primaryCallToAction onClick={onClose}>
+          Close
+        </Button>
       </div>
     </dialog>
   );

@@ -11,6 +11,8 @@ import {
 
 export const MAX_ATTEMPTS = 6;
 
+const CURRENT_RECORDED_GAME_VERSION = "1.0.0";
+
 export function useGame({ puzzleNumber, challenges }: Puzzle) {
   const key = `puzzles/${puzzleNumber}`;
   const [pattern, setPattern] = useState<RegExp>();
@@ -27,11 +29,7 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
 
   const updateRemainingAttempts = useCallback(
     (gameState: GameState, attempts: GameAttempt[]) => {
-      if (gameState === GameState.Incomplete) {
-        setRemainingAttempts(MAX_ATTEMPTS - attempts.length);
-      } else {
-        setRemainingAttempts(0);
-      }
+      setRemainingAttempts(MAX_ATTEMPTS - attempts.length);
     },
     []
   );
@@ -61,6 +59,7 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
         gameState,
         updatedAt: new Date().toISOString(),
         puzzleNumber,
+        version: CURRENT_RECORDED_GAME_VERSION,
       };
       localStorage.setItem(key, JSON.stringify(recordedGame));
 
@@ -69,7 +68,7 @@ export function useGame({ puzzleNumber, challenges }: Puzzle) {
       setGameState(gameState);
       updateRemainingAttempts(gameState, attempts);
     },
-    [key, updateRemainingAttempts]
+    [key, puzzleNumber, updateRemainingAttempts]
   );
 
   useEffect(() => {

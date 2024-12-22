@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import "./ShareWidget.css";
 import { GameAttempt, GameChallengeResult } from "./types";
+import { Button } from "./Button";
 
 interface ShareWidgetProps {
   attempts: GameAttempt[];
@@ -49,10 +50,9 @@ export function ShareWidget({
   }, [attempts, maxAttempts, puzzleNumber, shared, won]);
   return (
     <div className="share">
-      <button type="button" onClick={share}>
-        Share 📋
-      </button>
-      <div>{shared && "Copied to clipboard"}</div>
+      <Button primaryCallToAction type="button" onClick={share}>
+        Share {shared ? "✅" : "📋"}
+      </Button>
     </div>
   );
 }

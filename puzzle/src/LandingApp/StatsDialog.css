@@ -46,3 +46,8 @@
   display: flex;
   gap: 1rem;
 }
+
+.stats-dialog .actions {
+  display: flex;
+  justify-content: center;
+}

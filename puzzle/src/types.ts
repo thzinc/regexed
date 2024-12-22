@@ -45,4 +45,5 @@ export interface RecordedGame {
   gameState: GameState;
   updatedAt: string;
   puzzleNumber: string;
+  version: string;
 }

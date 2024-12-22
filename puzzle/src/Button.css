@@ -1,0 +1,24 @@
+.button {
+  flex: 1;
+  max-width: 10rem;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 3rem;
+  border: solid 1px #000000;
+  font-family: sans-serif;
+  background-color: #ba99e3;
+}
+
+.button.cta {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+.button.cta:hover {
+  background-color: #222;
+}
+
+.button.cta:active {
+  background-color: #444;
+}
