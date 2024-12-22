@@ -25,7 +25,7 @@ export function PatternInput({
     }
 
     try {
-      const newPattern = new RegExp(patternString);
+      const newPattern = new RegExp(patternString, "u");
       setPattern(newPattern);
       setValid(true);
       setError(undefined);
