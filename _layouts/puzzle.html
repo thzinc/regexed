@@ -21,8 +21,18 @@
           data-type="{{page.type | escape}}"
           data-theme="{{page.theme | escape}}"
           data-challenges-id="challenges"></div>
-
       </article>
+      {%- if site.show_drafts -%}
+        <article>
+          <button id="clear" data-puzzle-number="{{puzzle_number | escape}}">Clear player data for this puzzle</button>
+          <script type="application/javascript">
+            const clearEl = document.getElementById("clear")
+            clearEl.addEventListener("click", () => {
+              localStorage.removeItem(`puzzles/${clearEl.dataset.puzzleNumber}`);
+            })
+          </script>
+        </article>
+      {%- endif -%}
     </main>
     {% include footer.html %}
   </body>
