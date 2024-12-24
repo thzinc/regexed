@@ -12,18 +12,22 @@
         {%- endif -%}
         <ul>
           {%- if site.show_drafts -%}
+            {%- assign now = "now" | date: "%s" -%}
             <h1>Spoilers</h1>
             {%- for puzzle in site.spoilers -%}
-              {%- assign puzzle_number = puzzle.id | split: "/" | last -%}
-              <li class="h-event">
-                <a href="{{puzzle.id | escape}}" class="u-url">
-                  <span class="p-name">{{ puzzle_number }}</span>
-                  –
-                  <span class="dt-start">{{ puzzle.date | date: "%B %e, %Y" }}</span>
-                  –
-                  <span class="p-summary">{{ puzzle.title }}</span>
-                </a>
-              </li>
+              {%- assign puzzle_date = puzzle.date | date: "%s" -%}
+              {%- if puzzle_date <= now -%}
+                {%- assign puzzle_number = puzzle.id | split: "/" | last -%}
+                <li class="h-event">
+                  <a href="{{puzzle.id | escape}}" class="u-url">
+                    <span class="p-name">{{ puzzle_number }}</span>
+                    –
+                    <span class="dt-start">{{ puzzle.date | date: "%B %e, %Y" }}</span>
+                    –
+                    <span class="p-summary">{{ puzzle.title }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
             {%- endfor -%}
             <hr>
           {%- endif -%}
