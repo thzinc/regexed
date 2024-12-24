@@ -15,4 +15,4 @@ challenges:
     needle: "#спасибо"
 ---
 
-Find the <code>#hashtag</code> in each of the social media posts.
+Find the social media `#hashtag` in each of the challenges.
