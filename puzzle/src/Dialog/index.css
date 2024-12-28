@@ -1,0 +1,14 @@
+dialog {
+  border-radius: 1rem;
+  background-color: #ba99e3;
+  max-width: 20rem;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog .actions {
+  display: flex;
+  justify-content: center;
+}

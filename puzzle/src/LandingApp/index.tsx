@@ -9,7 +9,7 @@ interface LandingAppProps {
   playUrl: string | undefined;
 }
 export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
-  const { hasCompletedLatestPuzzle } = useStats(puzzleNumber);
+  const { loading, hasCompletedLatestPuzzle } = useStats(puzzleNumber);
 
   const playPuzzle = useCallback(() => {
     if (!playUrl) return;
@@ -27,7 +27,7 @@ export function LandingApp({ puzzleNumber, playUrl }: LandingAppProps) {
           tabIndex={1}
           onClick={playPuzzle}
         >
-          {hasCompletedLatestPuzzle ? "View Result" : "Play"}
+          {!loading && hasCompletedLatestPuzzle ? "View Result" : "Play"}
         </Button>
       </fieldset>
     </>
