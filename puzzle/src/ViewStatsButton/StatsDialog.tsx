@@ -1,6 +1,7 @@
 import { RefObject, useMemo } from "react";
 import "./StatsDialog.css";
 import { Button } from "../Button";
+import { Dialog } from "../Dialog";
 
 interface StatsDialogProps {
   onClose: () => void;
@@ -30,7 +31,7 @@ export function StatsDialog({
     [attemptCounts]
   );
   return (
-    <dialog className="stats-dialog" ref={modalRef}>
+    <Dialog className="stats-dialog" ref={modalRef}>
       <div className="win-stats">
         <div>
           <figure>
@@ -70,6 +71,6 @@ export function StatsDialog({
           Close
         </Button>
       </div>
-    </dialog>
+    </Dialog>
   );
 }

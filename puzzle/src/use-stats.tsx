@@ -6,6 +6,7 @@ interface Stats {
   showModal: () => void;
   closeModal: () => void;
   modalRef: RefObject<HTMLDialogElement>;
+  loading: boolean;
   hasStats: boolean;
   played: number;
   winRate: number;
@@ -17,6 +18,7 @@ interface Stats {
 
 export function useStats(latestPuzzleNumber?: string): Stats {
   const modalRef = useRef<HTMLDialogElement>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [played, setPlayed] = useState<number>(0);
   const [winRate, setWinRate] = useState<number>(0);
   const [currentStreak, setCurrentStreak] = useState<number>(0);
@@ -83,12 +85,14 @@ export function useStats(latestPuzzleNumber?: string): Stats {
     setCurrentStreak(currentStreak);
     setBestStreak(bestStreak);
     setAttemptCounts(attemptCounts);
+    setLoading(false);
   }, [fetchCompletedGames, latestPuzzleNumber]);
 
   return {
     showModal: () => modalRef.current?.showModal(),
     closeModal: () => modalRef.current?.close(),
     modalRef,
+    loading,
     hasStats: played > 0,
     played,
     winRate,

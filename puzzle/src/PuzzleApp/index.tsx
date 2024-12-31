@@ -4,6 +4,8 @@ import { GameResult } from "./GameResult";
 import { PatternInput } from "./PatternInput";
 import { Puzzle, GameState } from "../types";
 import { useGame } from "../use-game";
+import { ViewHelpButton } from "../ViewHelpButton";
+import "./index.css";
 
 interface PuzzleAppProps {
   puzzle: Puzzle;
@@ -33,9 +35,12 @@ export function PuzzleApp({ puzzle }: PuzzleAppProps) {
         onChange={(pattern) => setPattern(pattern)}
         onSubmit={(pattern, source) => attempt(pattern, source)}
       />
-      <AttemptsRemaining
-        count={gameState === GameState.Incomplete ? remainingAttempts : 0}
-      />
+      <div className="attemptsContainer">
+        <AttemptsRemaining
+          count={gameState === GameState.Incomplete ? remainingAttempts : 0}
+        />
+        <ViewHelpButton />
+      </div>
       <Challenges puzzle={puzzle} challenges={gameChallenges} />
     </>
   );

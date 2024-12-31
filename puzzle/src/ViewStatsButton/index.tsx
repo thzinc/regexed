@@ -12,6 +12,7 @@ export function ViewStatsButton({ puzzleNumber }: ViewStatsButtonProps) {
     closeModal,
     currentStreak,
     hasStats,
+    loading,
     modalRef,
     played,
     showModal,
@@ -28,7 +29,7 @@ export function ViewStatsButton({ puzzleNumber }: ViewStatsButtonProps) {
         attemptCounts={attemptCounts}
         modalRef={modalRef}
       />
-      {hasStats && (
+      {!loading && hasStats && (
         <Button
           analyticsEventName="View Stats"
           type="button"
