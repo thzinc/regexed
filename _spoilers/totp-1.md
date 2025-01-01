@@ -1,7 +1,8 @@
 ---
 title: "Only for a limited time"
 author: Daniel James
-date: 2024-12-23
+authored_at: 2024-12-23
+date: 2024-01-01
 challenges:
   - haystack: "Moneybags Wealth Management Alerts: Your online verification code 44675104. This code is good for 30 minutes and may only be used once."
     needle: "44675104"

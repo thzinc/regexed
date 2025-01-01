@@ -1,7 +1,8 @@
 ---
 title: "Just email me"
 author: Daniel James
-date: 2024-12-23
+authored_at: 2024-12-23
+date: 2024-01-01
 challenges:
   - haystack: "Sure, just send me an email at haxxor@example.net"
     needle: "haxxor@example.net"

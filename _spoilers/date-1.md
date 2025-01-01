@@ -1,7 +1,8 @@
 ---
 title: "What day is it?"
 author: Daniel James
-date: 2024-12-30
+authored_at: 2024-12-30
+date: 2024-01-01
 challenges:
   - haystack: "My birthday is January 9, 1993 and I love to have a quiet party with close friends."
     needle: "January 9, 1993"

@@ -1,7 +1,8 @@
 ---
 title: "Find the #hashtag"
 author: Daniel James
-date: 2024-12-21
+authored_at: 2024-12-21
+date: 2024-01-01
 challenges:
   - haystack: "This #sunset is gorgeous! 🌅"
     needle: "#sunset"

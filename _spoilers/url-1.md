@@ -1,7 +1,8 @@
 ---
 title: "Uniform Resource Locators"
 author: Daniel James
-date: 2024-12-23
+authored_at: 2024-12-23
+date: 2024-01-01
 challenges:
   - haystack: "A URL has a scheme and a scheme-specific part. e.g., in the URL http://example.com, the scheme is http and the scheme-specific part is //example.com"
     needle: "http://example.com"

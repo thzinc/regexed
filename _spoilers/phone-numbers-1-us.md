@@ -1,7 +1,8 @@
 ---
 title: "Hello operator"
 author: Daniel James
-date: 2024-12-21
+authored_at: 2024-12-21
+date: 2024-01-01
 challenges:
   - haystack: "Call toll-free at (800) 555-1212"
     needle: "(800) 555-1212"

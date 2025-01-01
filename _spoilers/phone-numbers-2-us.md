@@ -1,7 +1,8 @@
 ---
 title: "Phoning it in"
 author: Daniel James
-date: 2024-12-21
+authored_at: 2024-12-21
+date: 2024-01-01
 challenges:
   - haystack: "You can reach our London office at +44 (020) 5555 7777 or New York office at +1 (877) 555-7777."
     needle: "+1 (877) 555-7777"

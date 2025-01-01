@@ -1,7 +1,8 @@
 ---
 title: "Money, money, money"
 author: Daniel James
-date: 2024-12-30
+authored_at: 2024-12-30
+date: 2024-01-01
 challenges:
   - haystack: "When I get paid in 5 days, I'll give you $20."
     needle: "$20"
