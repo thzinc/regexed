@@ -1,0 +1,21 @@
+---
+title: "How many is that?"
+author: Daniel James
+authored_at: 2025-01-01
+date: 2024-01-10
+challenges:
+  - haystack: "Last night, we had a 6-hour D&D session!"
+    needle: "6"
+  - haystack: "Thomas, we need to leave in 45 minutes."
+    needle: "45"
+  - haystack: "The soup recipe calls for 1.5L of stock: vegetable or chicken."
+    needle: "1.5"
+  - haystack: "The wheel alignment report says the front driver's side wheel has a -3.4° camber."
+    needle: "-3.4"
+  - haystack: "There were 4,826 people in attendance at the festival this weekend."
+    needle: "4,826"
+---
+
+Find the [real number][wikipedia] in each of the challenges.
+
+[wikipedia]: https://en.wikipedia.org/wiki/Real_number
