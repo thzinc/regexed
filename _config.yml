@@ -24,6 +24,7 @@ defaults:
     values:
       layout: "puzzle"
       permalink: /spoilers/:name
+      sitemap: false
 feed:
   collections:
     - puzzles
