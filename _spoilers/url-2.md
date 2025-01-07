@@ -1,12 +1,12 @@
 ---
-title: "Common Internet Scheme Syntax"
+title: "A precursor to the generic URI"
 author: Daniel James
 authored_at: 2025-01-06
 date: 2024-01-01
 challenges:
-  - haystack: "Many URL schemes use Common Internet Scheme Syntax. In the example of https://awesome.example, the scheme-specific data of the URL is //awesome.example."
+  - haystack: "Many URL schemes follow Common Internet Scheme Syntax. In the example of https://awesome.example, the scheme-specific data of the URL is //awesome.example."
     needle: "https://awesome.example"
-  - haystack: "URL schemes that use Common Internet Scheme Syntax have default port numbers, but the syntax allows for nonstandard ports to be specified as in ftp://files.example.org:21021/README.md"
+  - haystack: "URL schemes that follow Common Internet Scheme Syntax have default port numbers, but the syntax allows for nonstandard ports to be specified as in ftp://files.example.org:21021/README.md"
     needle: "ftp://files.example.org:21021/README.md"
   - haystack: "A username and password may be included in the scheme data. Client implementations translate an HTTP URL like http://alice:s3cretp4ssw0rd@obscure.example into a request to obscure.example with an Authorization header set to YWxpY2U6czNjcmV0cDRzc3cwcmQ="
     needle: "http://alice:s3cretp4ssw0rd@obscure.example"

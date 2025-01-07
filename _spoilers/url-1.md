@@ -1,5 +1,5 @@
 ---
-title: "Uniform Resource Locators"
+title: "A humble proposal in 1994"
 author: Daniel James
 authored_at: 2024-12-23
 date: 2024-01-01
