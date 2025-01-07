@@ -10,8 +10,8 @@
         {%- if trimmed_content != "" -%}
           <p>{{ trimmed_content }}</p>
         {%- endif -%}
-        <ul>
-          {%- if site.show_drafts -%}
+        {%- if site.show_drafts -%}
+          <ol>
             {%- assign now = "now" | date: "%s" -%}
             <h1>Spoilers</h1>
             {%- for puzzle in site.spoilers -%}
@@ -29,8 +29,10 @@
                 </li>
               {%- endif -%}
             {%- endfor -%}
-            <hr>
-          {%- endif -%}
+          </ol>
+          <hr>
+        {%- endif -%}
+        <ul>
           {%- for puzzle in puzzles -%}
             {%- assign puzzle_number = puzzle.id | split: "/" | last -%}
             <li class="h-event">
