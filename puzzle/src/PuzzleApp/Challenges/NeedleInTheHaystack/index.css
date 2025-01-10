@@ -21,6 +21,10 @@
   height: 2rem;
 }
 
+.challenge .content {
+  white-space: pre-line;
+}
+
 .challenge.concealed .content {
   color: transparent;
   text-shadow: 0 0 0.5rem #000000;
