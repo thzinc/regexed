@@ -16,4 +16,6 @@ challenges:
     needle: "seconds"
 ---
 
-Find the unit of measurement in each of the challenges.
+Find the [SI unit of measurement][wikipedia] in each of the challenges.
+
+[wikipedia]: https://en.wikipedia.org/wiki/International_System_of_Units
