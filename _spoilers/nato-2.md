@@ -1,0 +1,23 @@
+---
+title: "Of all the things to tilt at..."
+author: "Daniel James"
+authored_at: 2025-01-31
+date: 2024-01-01
+challenges:
+  - haystack: POISED BROKEN WITTY FLASHY COTTON THIN DELTA OSCAR NOVEMBER CARNELIAN
+    needle: DELTA OSCAR NOVEMBER
+  - haystack: FLOWERY PLAUSIBLE BROAD QUEBEC UNIFORM INDIA OSCAR TANGO ECHO SUN
+    needle: QUEBEC UNIFORM INDIA OSCAR TANGO ECHO
+  - haystack: DEAR TARRY TRITE TANGO INDIA LIMA TANGO SIERRA CIRCULAR VERBOSE
+    needle: TANGO INDIA LIMA TANGO SIERRA
+  - haystack: GUSTY ALFA TANGO GROVE MARKED CHLORINATED ISLAND PRICKLY SHADE GLACIER
+    needle: ALFA TANGO
+  - haystack: WHISKEY INDIA NOVEMBER DELTA MIKE INDIA LIMA LIMA SIERRA RURAL
+    needle: WHISKEY INDIA NOVEMBER DELTA MIKE INDIA LIMA LIMA SIERRA
+---
+
+Find the consecutive [NATO phonetic alphabet][wikipedia] words in each of the challenges.
+
+Note: All words are UPPERCASE.
+
+[wikipedia]: https://en.wikipedia.org/wiki/NATO_phonetic_alphabet

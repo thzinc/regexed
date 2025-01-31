@@ -1,0 +1,32 @@
+---
+title: "Can you hear me now?"
+author: "Daniel James"
+authored_at: 2025-01-31
+date: 2024-01-01
+challenges:
+  - haystack:
+      VAULTED OBSERVANT DEEP QUARK AMPLIFIED SABER ROMEO ALFA DELTA INDIA
+      OSCAR CUMBERSOME NINE
+    needle: ROMEO ALFA DELTA INDIA OSCAR
+  - haystack: NIMBLE FAR FEATHER NOVEMBER ECHO ECHO DELTA SIERRA FUTURE SUNSET
+      FLAWLESS CAPABLE DESERTED
+    needle: NOVEMBER ECHO ECHO DELTA SIERRA
+  - haystack:
+      CHARMING BRAINY LIGHT LOUD GLOBAL CHARLIE LIMA ECHO ALFA ROMEO LIMA
+      YANKEE SORDID
+    needle: CHARLIE LIMA ECHO ALFA ROMEO LIMA YANKEE
+  - haystack:
+      DIRT AWARE UNIFORM NOVEMBER DELTA ECHO ROMEO SIERRA TANGO OSCAR OSCAR
+      DELTA CERTAIN
+    needle: UNIFORM NOVEMBER DELTA ECHO ROMEO SIERRA TANGO OSCAR OSCAR DELTA
+  - haystack:
+      MOUNTAIN WIND WHISKEY OSCAR ROMEO DELTA SIERRA RESISTED FLAME VEILED
+      FIRE INVINCIBLE JELLY
+    needle: WHISKEY OSCAR ROMEO DELTA SIERRA
+---
+
+Find the consecutive [NATO phonetic alphabet][wikipedia] words in each of the challenges.
+
+Note: All words are UPPERCASE.
+
+[wikipedia]: https://en.wikipedia.org/wiki/NATO_phonetic_alphabet
