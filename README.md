@@ -1,6 +1,6 @@
 # regexed (^.\*$)
 
-A daily puzzle game
+A ~~daily~~ puzzle game
 
 # Licenses
 
