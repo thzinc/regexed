@@ -1,6 +1,6 @@
-{%- assign curr_puzzle = site.puzzles | last -%}
-{%- assign puzzle_number = curr_puzzle.id | split: "/" | last -%}
+{%- assign puzzles = site.puzzles | reverse -%}
 {%- assign trimmed_content = content | strip -%}
+{%- assign now = "now" | date: "%s" -%}
 <!DOCTYPE html>
 <html>
   {% include head.html %}
@@ -16,18 +16,18 @@
           <p>{{ trimmed_content }}</p>
         {%- endif -%}
       </article>
-      {%- if curr_puzzle %}
-        <div
-          id="landing"
-          data-puzzle-number="{{puzzle_number | escape}}"
-          data-play-url="{{ curr_puzzle.id |  escape }}"></div>
-        {% include puzzleCard.html href=curr_puzzle.id date=curr_puzzle.date puzzle_number=puzzle_number author=curr_puzzle.author title=curr_puzzle.title %}
-      {%- else -%}
-        <p style="text-align: center">
-          In the making by
-          <a href="https://thzinc.com">thzinc</a>
-        </p>
-      {%- endif -%}
+      {%- for puzzle in puzzles -%}
+        {%- assign puzzle_number = puzzle.id | split: "/" | last -%}
+        {%- assign puzzle_date = puzzle.date | date: "%s" -%}
+        {%- if puzzle_date <= now or site.show_drafts -%}
+          <div
+            id="landing"
+            data-puzzle-number="{{puzzle_number | escape}}"
+            data-play-url="{{ puzzle.id |  escape }}"></div>
+          {% include puzzleCard.html href=puzzle.id date=puzzle.date puzzle_number=puzzle_number author=puzzle.author title=puzzle.title %}
+          {% break %}
+        {%- endif -%}
+      {%- endfor -%}
     </main>
     {% include footer.html %}
   </body>
