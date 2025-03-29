@@ -26,8 +26,7 @@ defaults:
       permalink: /spoilers/:name
       sitemap: false
 feed:
-  collections:
-    - puzzles
+  posts_limit: 1000
 plugins:
   - jekyll-sitemap
   - jekyll-feed

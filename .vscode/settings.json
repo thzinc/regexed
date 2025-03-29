@@ -5,6 +5,7 @@
     "editor.formatOnSave": true
   },
   "files.associations": {
-    "*.html": "liquid"
+    "*.html": "liquid",
+    "feed.xml": "liquid"
   }
 }
